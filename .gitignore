@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+output/session/
+fastapi*.log
+fastapi.pid
+
+.env
+.DS_Store

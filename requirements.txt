@@ -1,0 +1,7 @@
+qrcode
+pillow
+colorama
+rich
+pyfiglet
+fastapi
+uvicorn

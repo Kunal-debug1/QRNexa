@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>QRNexa - Free QR Code Generator, No Signup</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="logo.png">
+  </head>
+  <body>
+    <div class="notice">
+      <span>No signup required</span>
+      <span>No ads</span>
+      <span>Local session cleanup</span>
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="QRNexa home">
+        <span class="brand-mark">Q</span>
+        <span>QRNexa</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#formats">Formats</a>
+        <a href="#how">How it works</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <button class="theme-button" id="themeToggle" type="button" aria-label="Toggle theme">Theme</button>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Free QR Code Generator</p>
+          <h1>QRNexa QR codes, ready before the tab gets cold.</h1>
+          <p class="hero-text">
+            Create clean QR codes for links, contacts, WiFi, payments, SMS, email, and phone calls.
+            Your generated files stay on this device during the session and are cleared when the app closes.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-link" href="#generator">Generate QR</a>
+            <a class="secondary-link" href="#formats">View formats</a>
+          </div>
+          <dl class="metrics">
+            <div>
+              <dt>8</dt>
+              <dd>QR types</dd>
+            </div>
+            <div>
+              <dt>0</dt>
+              <dd>Accounts</dd>
+            </div>
+            <div>
+              <dt>PNG</dt>
+              <dd>Quick export</dd>
+            </div>
+          </dl>
+        </div>
+
+        <section class="generator" id="generator" aria-label="QR generator">
+          <div class="generator-head">
+            <div>
+              <p class="eyebrow">Generator</p>
+              <h2>Create your code</h2>
+            </div>
+            <span id="apiState">FastAPI ready</span>
+          </div>
+
+          <div class="type-switch" role="tablist" aria-label="QR type">
+            <button class="type-tab active" type="button" data-type="text">URL / Text</button>
+            <button class="type-tab" type="button" data-type="contact">vCard</button>
+            <button class="type-tab" type="button" data-type="wifi">WiFi</button>
+            <button class="type-tab" type="button" data-type="sms">SMS</button>
+            <button class="type-tab" type="button" data-type="email">Email</button>
+            <button class="type-tab" type="button" data-type="phone">Phone</button>
+            <button class="type-tab" type="button" data-type="whatsapp">WhatsApp</button>
+            <button class="type-tab" type="button" data-type="upi">UPI</button>
+          </div>
+
+          <div class="generator-grid">
+            <form id="qrForm" class="form-grid" autocomplete="off">
+              <div class="field span-all" data-field="text">
+                <label for="textValue">URL or text</label>
+                <textarea id="textValue" rows="4" placeholder="https://example.com"></textarea>
+              </div>
+
+              <div class="field" data-field="wifi">
+                <label for="wifiSsid">WiFi name</label>
+                <input id="wifiSsid" type="text" placeholder="Guest WiFi">
+              </div>
+              <div class="field" data-field="wifi">
+                <label for="wifiPassword">Password</label>
+                <input id="wifiPassword" type="text" placeholder="Password">
+              </div>
+              <div class="field" data-field="wifi">
+                <label for="wifiSecurity">Security</label>
+                <select id="wifiSecurity">
+                  <option value="WPA">WPA/WPA2</option>
+                  <option value="WEP">WEP</option>
+                  <option value="nopass">Open</option>
+                </select>
+              </div>
+
+              <div class="field" data-field="whatsapp">
+                <label for="waPhone">WhatsApp number</label>
+                <input id="waPhone" type="tel" placeholder="919876543210">
+              </div>
+              <div class="field span-all" data-field="whatsapp">
+                <label for="waMessage">Message</label>
+                <textarea id="waMessage" rows="3" placeholder="Hello!"></textarea>
+              </div>
+
+              <div class="field" data-field="upi">
+                <label for="upiId">UPI ID</label>
+                <input id="upiId" type="text" placeholder="name@bank">
+              </div>
+              <div class="field" data-field="upi">
+                <label for="upiName">Payee name</label>
+                <input id="upiName" type="text" placeholder="Your Name">
+              </div>
+              <div class="field" data-field="upi">
+                <label for="upiAmount">Amount</label>
+                <input id="upiAmount" type="number" min="0" step="0.01" placeholder="250">
+              </div>
+
+              <div class="field" data-field="contact">
+                <label for="contactName">Name</label>
+                <input id="contactName" type="text" placeholder="Your Name">
+              </div>
+              <div class="field" data-field="contact">
+                <label for="contactPhone">Phone</label>
+                <input id="contactPhone" type="tel" placeholder="+91 98765 43210">
+              </div>
+              <div class="field" data-field="contact">
+                <label for="contactEmail">Email</label>
+                <input id="contactEmail" type="email" placeholder="you@example.com">
+              </div>
+
+              <div class="field" data-field="sms">
+                <label for="smsPhone">SMS number</label>
+                <input id="smsPhone" type="tel" placeholder="+91 98765 43210">
+              </div>
+              <div class="field span-all" data-field="sms">
+                <label for="smsMessage">SMS message</label>
+                <textarea id="smsMessage" rows="3" placeholder="Your message"></textarea>
+              </div>
+
+              <div class="field" data-field="email">
+                <label for="emailAddress">Email address</label>
+                <input id="emailAddress" type="email" placeholder="hello@example.com">
+              </div>
+              <div class="field" data-field="email">
+                <label for="emailSubject">Subject</label>
+                <input id="emailSubject" type="text" placeholder="Feedback">
+              </div>
+              <div class="field span-all" data-field="email">
+                <label for="emailBody">Body</label>
+                <textarea id="emailBody" rows="3" placeholder="Write the email body"></textarea>
+              </div>
+
+              <div class="field" data-field="phone">
+                <label for="phoneNumber">Phone number</label>
+                <input id="phoneNumber" type="tel" placeholder="+91 98765 43210">
+              </div>
+
+              <div class="field">
+                <label for="fillColor">QR color</label>
+                <input id="fillColor" type="color" value="#111827">
+              </div>
+              <div class="field">
+                <label for="backColor">Background</label>
+                <input id="backColor" type="color" value="#ffffff">
+              </div>
+              <div class="field">
+                <label for="sizeValue">Export size</label>
+                <input id="sizeValue" type="range" min="220" max="520" value="360">
+              </div>
+            </form>
+
+            <aside class="preview" aria-label="QR preview">
+              <div class="qr-stage">
+                <img id="qrImage" alt="Generated QR code">
+                <p id="emptyState">Enter content to generate a QR code.</p>
+              </div>
+              <div class="payload-box">
+                <span>Payload</span>
+                <output id="payloadPreview"></output>
+              </div>
+              <div class="actions">
+                <button id="downloadBtn" class="primary" type="button">Download PNG</button>
+                <button id="copyBtn" type="button">Copy payload</button>
+              </div>
+              <p class="status" id="statusText" role="status"></p>
+            </aside>
+          </div>
+        </section>
+      </section>
+
+      <section class="trust-strip" aria-label="Service qualities">
+        <span>Instant generation</span>
+        <span>No email gate</span>
+        <span>Ad-free workspace</span>
+        <span>Session files auto-delete</span>
+      </section>
+
+      <section class="section" id="formats">
+        <p class="eyebrow">Formats</p>
+        <h2>One tool for everyday QR needs.</h2>
+        <div class="format-grid">
+          <article><h3>URL & Text</h3><p>Share links, labels, notes, menus, or short instructions.</p></article>
+          <article><h3>vCard Contact</h3><p>Make a scannable contact card for business cards and events.</p></article>
+          <article><h3>WiFi</h3><p>Let guests connect without typing network passwords.</p></article>
+          <article><h3>SMS, Email, Phone</h3><p>Open the right app with the recipient and message already prepared.</p></article>
+          <article><h3>WhatsApp</h3><p>Create a direct chat link with an optional prefilled message.</p></article>
+          <article><h3>UPI</h3><p>Build a payment QR with payee, name, and optional amount.</p></article>
+        </div>
+      </section>
+
+      <section class="section steps" id="how">
+        <p class="eyebrow">How it works</p>
+        <h2>Choose, enter, customize, download.</h2>
+        <ol>
+          <li><strong>Pick a type.</strong> The form changes to match the QR format.</li>
+          <li><strong>Add content.</strong> The backend prepares the correct payload.</li>
+          <li><strong>Tune the look.</strong> Choose foreground, background, and export size.</li>
+          <li><strong>Download fast.</strong> Files are cached locally for the current app session.</li>
+        </ol>
+      </section>
+
+      <section class="section faq" id="faq">
+        <p class="eyebrow">FAQ</p>
+        <h2>Practical answers.</h2>
+        <details open>
+          <summary>Where are generated QR files stored?</summary>
+          <p>FastAPI stores them in `output/session` for quick local downloads while the app runs.</p>
+        </details>
+        <details>
+          <summary>What happens after closing the app?</summary>
+          <p>The session folder is cleared on server shutdown and again on the next startup.</p>
+        </details>
+        <details>
+          <summary>Do QR codes expire?</summary>
+          <p>These are static QR codes. Once downloaded, the image keeps working as long as the encoded content remains valid.</p>
+        </details>
+      </section>
+    </main>
+  </body>
+  <script src="app.js"></script>
+</html>
